@@ -18,7 +18,7 @@ Sys.setenv(LANG="en_US.UTF-8")
 Sys.setenv(LC_ALL="en_US.UTF-8")
 
 library(devtools)
-install_github("QingCheng0218/MR.LDP")
+install_github("QingCheng0218/MR.LDP@main")
 ```
 
 Usage
