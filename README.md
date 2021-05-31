@@ -8,7 +8,7 @@ Installation
 Install the development version of **MR.LDP** by use of the 'devtools' package. Note that **MR.LDP** depends on the 'Rcpp' and 'RcppArmadillo' package, which also requires appropriate setting of Rtools and Xcode for Windows and Mac OS/X, respectively.
 ```
 library(devtools)
-install_github("QingCheng0218/MR.LDP")
+install_github("QingCheng0218/MR.LDP@main")
 ```
 
 If you have errors installing this package on Linux, try the following commands in R:
