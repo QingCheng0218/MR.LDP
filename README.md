@@ -32,5 +32,5 @@ Qing Cheng, Yi Yang, Xingjie Shi, Kar-Fu Yeung, Can Yang, Heng Peng, Jin Liu<sup
 Development
 ===========
 
-This package is developed and maintained by Qing Cheng (qing.cheng@duke-nus.edu.sg).
+This package is developed and maintained by Qing Cheng (qingcheng0218@gmail.com).
  
