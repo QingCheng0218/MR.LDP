@@ -113,6 +113,14 @@ Para_PXVb2 <- function(R, block_inf, nblocks, bh1, bh2, se1, se2, mu, muA, beta0
     .Call(`_MR_LDP_Para_PXVb2`, R, block_inf, nblocks, bh1, bh2, se1, se2, mu, muA, beta0, sgga2, sgal2, coreNum, constr, epsStopLogLik, maxIter)
 }
 
+blockinffun <- function(F4gammah) {
+    .Call(`_MR_LDP_blockinffun`, F4gammah)
+}
+
+MRLDP_Real <- function(F4bh1, F4bh2, F4se1, F4se2, F4Rblock, model, constr, opts = NULL) {
+    .Call(`_MR_LDP_MRLDP_Real`, F4bh1, F4bh2, F4se1, F4se2, F4Rblock, model, constr, opts)
+}
+
 PXvbfunM2_par <- function(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2, mu, muA, sgga2, sgal2, beta0, constr, epsStopLogLik, maxIter, coreNum) {
     .Call(`_MR_LDP_PXvbfunM2_par`, F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2, mu, muA, sgga2, sgal2, beta0, constr, epsStopLogLik, maxIter, coreNum)
 }

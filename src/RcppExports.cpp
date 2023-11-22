@@ -23,11 +23,20 @@
 #include "Model1_Par_pxvb.hpp"
 #include "Model2_Par_pxvb.hpp"
 #include "Par_pxvb.hpp"
+#include "MRLDPdefaultInitialValue.hpp"
+
 
 using namespace Rcpp;
 using namespace arma;
 using namespace std;
-using namespace boost;
+
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(BH)]]
+
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
 
 // load_block_file
 vector<umat> load_block_file(string block_file);
@@ -678,6 +687,35 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// blockinffun
+List blockinffun(arma::field<vec> F4gammah);
+RcppExport SEXP _MR_LDP_blockinffun(SEXP F4gammahSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::field<vec> >::type F4gammah(F4gammahSEXP);
+    rcpp_result_gen = Rcpp::wrap(blockinffun(F4gammah));
+    return rcpp_result_gen;
+END_RCPP
+}
+// MRLDP_Real
+Rcpp::List MRLDP_Real(arma::field<vec> F4bh1, arma::field<vec> F4bh2, arma::field<vec> F4se1, arma::field<vec> F4se2, arma::field<mat> F4Rblock, const int& model, const int& constr, SEXP opts);
+RcppExport SEXP _MR_LDP_MRLDP_Real(SEXP F4bh1SEXP, SEXP F4bh2SEXP, SEXP F4se1SEXP, SEXP F4se2SEXP, SEXP F4RblockSEXP, SEXP modelSEXP, SEXP constrSEXP, SEXP optsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::field<vec> >::type F4bh1(F4bh1SEXP);
+    Rcpp::traits::input_parameter< arma::field<vec> >::type F4bh2(F4bh2SEXP);
+    Rcpp::traits::input_parameter< arma::field<vec> >::type F4se1(F4se1SEXP);
+    Rcpp::traits::input_parameter< arma::field<vec> >::type F4se2(F4se2SEXP);
+    Rcpp::traits::input_parameter< arma::field<mat> >::type F4Rblock(F4RblockSEXP);
+    Rcpp::traits::input_parameter< const int& >::type model(modelSEXP);
+    Rcpp::traits::input_parameter< const int& >::type constr(constrSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type opts(optsSEXP);
+    rcpp_result_gen = Rcpp::wrap(MRLDP_Real(F4bh1, F4bh2, F4se1, F4se2, F4Rblock, model, constr, opts));
+    return rcpp_result_gen;
+END_RCPP
+}
 // PXvbfunM2_par
 List PXvbfunM2_par(const arma::field<mat>& F4Rblock, const arma::umat& block_inf, const uword& nblocks, const arma::vec& bh1, const arma::vec& bh2, const arma::vec& se1, const arma::vec& se2, arma::vec& mu, arma::vec& muA, double& sgga2, double& sgal2, double& beta0, const int& constr, const double& epsStopLogLik, const int& maxIter, int coreNum);
 RcppExport SEXP _MR_LDP_PXvbfunM2_par(SEXP F4RblockSEXP, SEXP block_infSEXP, SEXP nblocksSEXP, SEXP bh1SEXP, SEXP bh2SEXP, SEXP se1SEXP, SEXP se2SEXP, SEXP muSEXP, SEXP muASEXP, SEXP sgga2SEXP, SEXP sgal2SEXP, SEXP beta0SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP, SEXP coreNumSEXP) {
@@ -1028,6 +1066,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MR_LDP_MRLDP_RealGibbspar", (DL_FUNC) &_MR_LDP_MRLDP_RealGibbspar, 20},
     {"_MR_LDP_Para_PXVb1", (DL_FUNC) &_MR_LDP_Para_PXVb1, 14},
     {"_MR_LDP_Para_PXVb2", (DL_FUNC) &_MR_LDP_Para_PXVb2, 16},
+    {"_MR_LDP_blockinffun", (DL_FUNC) &_MR_LDP_blockinffun, 1},
+    {"_MR_LDP_MRLDP_Real", (DL_FUNC) &_MR_LDP_MRLDP_Real, 8},
     {"_MR_LDP_PXvbfunM2_par", (DL_FUNC) &_MR_LDP_PXvbfunM2_par, 16},
     {"_MR_LDP_PXvbfunM1_par", (DL_FUNC) &_MR_LDP_PXvbfunM1_par, 14},
     {"_MR_LDP_vbfunM1", (DL_FUNC) &_MR_LDP_vbfunM1, 11},
